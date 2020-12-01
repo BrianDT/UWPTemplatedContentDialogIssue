@@ -1,8 +1,7 @@
 # UnoGeometryIssues
 Replicates issues with templated content dialog controls
 
-Issues are:
-
+Raised as issue #4639
 On UWP the following exception is raised
 
 System.AccessViolationException
@@ -12,10 +11,11 @@ System.AccessViolationException
   StackTrace:
 <Cannot evaluate the exception stack trace>
 
+Raised as issue #4641
 On Android, iOS and WASM The content dialog is displayed before ShowAsync is called
-
 On Android, iOS and WASM The content dialog is displayed in the wrong location after ShowAsync is called
 
+Raised as issue #4640
 On Android the following exception is raised when the 'Show Progress' button is pressed
 
 Java.Lang.IllegalStateException
