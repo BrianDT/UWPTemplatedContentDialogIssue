@@ -1,0 +1,31 @@
+﻿<Page
+    x:Class="TemplatedContentDialogIssue.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TemplatedContentDialogIssue"
+    xmlns:controls="using:TemplatedContentDialogIssue.Shared.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="Auto"/>
+      </Grid.RowDefinitions>
+
+      <TextBlock Text="Heh press the button the display a custom dialog" Margin="20" FontSize="30" />
+
+        <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center">
+            <Button x:Name="showProgress" Content="Custom Progress" Click="Show_Progress" Margin="0,12,0,0" />
+            <Button Content="Progress with Timer" Click="Show_Progress_With_Time_Limit" Margin="0,12,0,0"/>
+        </StackPanel>
+
+      <StackPanel x:Name="dialogContainer" Grid.Row="2" HorizontalAlignment="Center">
+        <controls:ProgressDialog x:Name="progressDialog"
+                                 UndoCommand="{x:Bind UndoCommand, Mode=OneWay}"
+                                 Margin="0,0,0,24"/>
+      </StackPanel>
+    </Grid>
+</Page>

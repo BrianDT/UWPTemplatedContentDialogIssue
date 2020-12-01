@@ -1,0 +1,4 @@
+﻿
+namespace TemplatedContentDialogIssue.Skia.Gtk
+{
+}
