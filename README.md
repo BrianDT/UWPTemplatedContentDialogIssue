@@ -2,6 +2,7 @@
 Replicates issues with templated content dialog controls
 
 Raised as issue #4639
+Also raised as issue # on https://github.com/Microsoft/microsoft-ui-xaml
 On UWP the following exception is raised
 
 System.AccessViolationException
