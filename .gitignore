@@ -3,7 +3,9 @@
 ################################################################################
 
 /.vs
+/TemplatedContentDialogIssue/TemplatedContentDialogIssue.Droid/bin
 /TemplatedContentDialogIssue/TemplatedContentDialogIssue.Droid/obj
+/TemplatedContentDialogIssue/TemplatedContentDialogIssue.iOS/bin
 /TemplatedContentDialogIssue/TemplatedContentDialogIssue.iOS/obj
 /TemplatedContentDialogIssue/TemplatedContentDialogIssue.macOS/obj
 /TemplatedContentDialogIssue/TemplatedContentDialogIssue.Skia.Gtk/obj
@@ -13,8 +15,7 @@
 /TemplatedContentDialogIssue/TemplatedContentDialogIssue.UWP/bin
 /TemplatedContentDialogIssue/TemplatedContentDialogIssue.UWP/obj
 /.vsconfig
-/TemplatedContentDialogIssue/TemplatedContentDialogIssue.Droid/bin/Debug
-/TemplatedContentDialogIssue/TemplatedContentDialogIssue.iOS/bin/iPhone/Debug
-/TemplatedContentDialogIssue/TemplatedContentDialogIssue.iOS/bin/iPhoneSimulator/Debug
-/TemplatedContentDialogIssue/TemplatedContentDialogIssue.Wasm/bin/Debug/netstandard2.0
+/TemplatedContentDialogIssue/TemplatedContentDialogIssue.Wasm/bin
 /TemplatedContentDialogIssue/TemplatedContentDialogIssue.Wasm/obj
+/PureUWPApp/bin
+/PureUWPApp/obj

@@ -29,7 +29,9 @@ namespace TemplatedContentDialogIssue
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        // Using a DependencyProperty as the backing store for  UndoCommand.  This enables animation, styling, binding, etc...
+        /// <summary>
+        /// Using a DependencyProperty as the backing store for  UndoCommand.  This enables animation, styling, binding, etc...
+        /// </summary>
         public static readonly DependencyProperty UndoCommandProperty =
             DependencyProperty.Register("UndoCommand", typeof(ICommand), typeof(MainPage), new PropertyMetadata(0));
 
@@ -63,6 +65,7 @@ namespace TemplatedContentDialogIssue
         /// <param name="e">The event args.</param>
         private async void Show_Progress(object sender, RoutedEventArgs e)
         {
+            this.dialogContainer.Visibility = Visibility.Visible;
             await this.progressDialog.ShowAsync(ContentDialogPlacement.InPlace);
         }
 
@@ -77,16 +80,18 @@ namespace TemplatedContentDialogIssue
             {
                 DispatchHelper.InvokeOnUIThread(async () =>
                 {
+                    this.dialogContainer.Visibility = Visibility.Visible;
                     await this.progressDialog.ShowAsync(ContentDialogPlacement.InPlace);
                 });
             });
 
             Task.Run(async () =>
             {
-                await Task.Delay(TimeSpan.FromSeconds(8));
+                await Task.Delay(TimeSpan.FromSeconds(4));
                 DispatchHelper.InvokeOnUIThread(() =>
                 {
                     this.progressDialog.Hide();
+                    this.dialogContainer.Visibility = Visibility.Collapsed;
                 });
             });
         }
@@ -98,6 +103,7 @@ namespace TemplatedContentDialogIssue
         private async Task Undo(object parameters)
         {
             this.progressDialog.Hide();
+            this.dialogContainer.Visibility = Visibility.Collapsed;
             await Task.CompletedTask;
         }
     }
