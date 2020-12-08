@@ -26,12 +26,12 @@
 
         </Grid>
         <StackPanel x:Name="dialogContainer" Grid.Row="2" MinHeight="60" Background="Red"
-                    MinWidth="200"
                     Visibility="Collapsed"
                     RelativePanel.AlignLeftWithPanel="True"
+                    RelativePanel.AlignRightWithPanel="True"
                     RelativePanel.AlignBottomWithPanel="True">
             <controls:ProgressDialog x:Name="progressDialog"
-                                     HorizontalAlignment="Right"
+                                     HorizontalAlignment="Center"
                                      UndoCommand="{x:Bind UndoCommand, Mode=OneWay}"
                                      Margin="0,0,0,24"/>
         </StackPanel>

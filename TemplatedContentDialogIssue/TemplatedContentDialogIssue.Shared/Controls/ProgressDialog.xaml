@@ -10,25 +10,27 @@
             <Border x:Name="Container"> <!--SHOULD NOT BE NECESSARY-->
                 <Grid x:Name="LayoutRoot">  <!--SHOULD NOT BE NECESSARY-->
                     <Border x:Name="BackgroundElement" BorderThickness="0" CornerRadius="8" Background="#AA000000" Padding="8,4,8,4">
-                        <Grid x:Name="DialogSpace">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-
-                            <TextBlock Text="This is where messages and and UNDO button would normally be"
-                                   TextWrapping="WrapWholeWords"
-                                   Margin="16,0,16,0"
-                                   VerticalAlignment="Center"
-                                   Foreground="White" FontSize="12"/>
-                            <Button Grid.Column="1" Content="UNDO" Click="Button_Click"
-                                    Background="Gray"
-                                    Foreground="White"
-                                    Margin="12,4,12,4"/>
-                        </Grid>
+                        <ContentPresenter/>
                     </Border>
                 </Grid>
             </Border>
         </ControlTemplate>
     </ContentDialog.Template>
+    <Grid x:Name="DialogSpace">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="This is where messages and and UNDO button would normally be"
+                                   TextWrapping="WrapWholeWords"
+                                   Margin="16,0,16,0"
+                                   VerticalAlignment="Center"
+                                   Foreground="White" FontSize="12"/>
+        <Button Grid.Column="1" Content="UNDO" Click="Button_Click"
+                                    Background="Gray"
+                                    Foreground="White"
+                                    Margin="12,4,12,4"/>
+    </Grid>
+
 </ContentDialog>
