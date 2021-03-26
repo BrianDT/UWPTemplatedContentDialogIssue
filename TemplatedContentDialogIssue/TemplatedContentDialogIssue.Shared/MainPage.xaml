@@ -20,13 +20,19 @@
           <TextBlock Text="Heh press the button to display a custom dialog" Margin="20" FontSize="30" />
 
             <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center">
-                <Button x:Name="showProgress" Content="Custom Progress" Click="Show_Progress" Margin="0,12,0,0" />
+                <Grid>
+                    <Button x:Name="showProgress" Content="Custom Progress" Click="Show_Progress" Margin="0,12,0,0"
+                            HorizontalAlignment="Left"/>
+                    <Button x:Name="manualAdjust" Content="Enable manual adjustment" Click="Enable_Adjustment" Margin="0,12,0,0"
+                            HorizontalAlignment="Right"/>
+                </Grid>
                 <Button Content="Progress with Timer" Click="Show_Progress_With_Time_Limit" Margin="0,12,0,0"/>
                 <TextBlock Text="Dialog should be horizontally centered in the red panel below." Margin="20" FontSize="24" />
             </StackPanel>
 
         </Grid>
         <StackPanel x:Name="dialogContainer" MinHeight="60" Background="Red"
+                    SizeChanged="Container_SizeChanged"
                     Visibility="Collapsed"
                     RelativePanel.AlignLeftWithPanel="True"
                     RelativePanel.AlignRightWithPanel="True"

@@ -16,7 +16,7 @@
             </Border>
         </ControlTemplate>
     </ContentDialog.Template>
-    <Grid x:Name="DialogSpace">
+    <Grid x:Name="DialogSpace" SizeChanged="Dialog_SizeChanged">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>

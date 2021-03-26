@@ -21,3 +21,8 @@ On Android the following exception is raised when the 'Show Progress' button is 
 
 Java.Lang.IllegalStateException
   Message=The specified child already has a parent. You must call removeView() on the child's parent first.
+
+
+The positioning issue has been raised separately as #4662
+
+A manual adjustment of positions added showing a workaround for the positioning issue

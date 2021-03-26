@@ -1,4 +1,4 @@
-﻿// <copyright file="MainPage.xaml.cs" company="Visual Software Systems Ltd.">Copyright (c) 2020 All rights reserved</copyright>
+﻿// <copyright file="MainPage.xaml.cs" company="Visual Software Systems Ltd.">Copyright (c) 2020 - 2021 All rights reserved</copyright>
 
 namespace TemplatedContentDialogIssue
 {
@@ -30,6 +30,21 @@ namespace TemplatedContentDialogIssue
     public sealed partial class MainPage : Page
     {
         /// <summary>
+        /// The width if the dialog container
+        /// </summary>
+        private double containerWidth;
+
+        /// <summary>
+        /// The width if the dialog
+        /// </summary>
+        private double dialogWidth;
+
+        /// <summary>
+        /// If true do manual based on the control widths.
+        /// </summary>
+        private bool manualRepositioning;
+
+        /// <summary>
         /// Using a DependencyProperty as the backing store for  UndoCommand.  This enables animation, styling, binding, etc...
         /// </summary>
         public static readonly DependencyProperty UndoCommandProperty =
@@ -49,6 +64,12 @@ namespace TemplatedContentDialogIssue
                 {
                     DispatchHelper.Initialise();
                 }
+
+                this.progressDialog.DialogSizeChanged += (d) =>
+                {
+                    this.dialogWidth = d;
+                    this.UpdateDialogOffset();
+                };
             };
         }
 
@@ -56,6 +77,17 @@ namespace TemplatedContentDialogIssue
         {
             get { return (ICommand)GetValue(UndoCommandProperty); }
             set { SetValue(UndoCommandProperty, value); }
+        }
+
+        /// <summary>
+        /// Event handler for the enable manual adjustment button.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The event args.</param>
+        private void Enable_Adjustment(object sender, RoutedEventArgs e)
+        {
+            this.manualRepositioning = true;
+            this.UpdateDialogOffset();
         }
 
         /// <summary>
@@ -105,6 +137,29 @@ namespace TemplatedContentDialogIssue
             this.progressDialog.Hide();
             this.dialogContainer.Visibility = Visibility.Collapsed;
             await Task.CompletedTask;
+        }
+
+        /// <summary>
+        /// Event handler for dialog container size change
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The event args</param>
+        private void Container_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (this.containerWidth != e.NewSize.Width)
+            {
+                this.containerWidth = e.NewSize.Width;
+                this.UpdateDialogOffset();
+            }
+        }
+
+        private void UpdateDialogOffset()
+        {
+            if (this.manualRepositioning && this.dialogWidth > 0 && this.containerWidth > 0 && this.containerWidth > this.dialogWidth)
+            {
+                var offset = -this.dialogWidth;
+                this.progressDialog.Margin = new Thickness(offset, progressDialog.Margin.Top, progressDialog.Margin.Right, progressDialog.Margin.Bottom);
+            }
         }
     }
 }
