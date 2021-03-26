@@ -116,10 +116,10 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-	  <Compile Include="App.xaml.cs">
-		  <DependentUpon>App.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Include="..\TemplatedContentDialogIssue\TemplatedContentDialogIssue.Shared\Controls\ProgressDialog.xaml.cs">
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="..\TemplatedContentDialogIssue\TemplatedContentDialogIssue.Shared\Controls\ProgressDialog.xaml.cs">
       <Link>Controls\ProgressDialog.xaml.cs</Link>
       <DependentUpon>ProgressDialog.xaml</DependentUpon>
     </Compile>
@@ -151,11 +151,11 @@
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
   </ItemGroup>
   <ItemGroup>
-	  <ApplicationDefinition Include="App.xaml">
-		  <Generator>MSBuild:Compile</Generator>
-		  <SubType>Designer</SubType>
-	  </ApplicationDefinition>
-	  <Page Include="..\TemplatedContentDialogIssue\TemplatedContentDialogIssue.Shared\Controls\ProgressDialog.xaml">
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="..\TemplatedContentDialogIssue\TemplatedContentDialogIssue.Shared\Controls\ProgressDialog.xaml">
       <Link>Controls\ProgressDialog.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -168,7 +168,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.2.10</Version>
+      <Version>6.2.12</Version>
     </PackageReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
