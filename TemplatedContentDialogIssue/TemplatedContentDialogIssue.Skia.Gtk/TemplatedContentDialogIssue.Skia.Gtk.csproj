@@ -5,6 +5,12 @@
     <OutputType Condition="'$(Configuration)'=='Debug'">Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE;__UNO__</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants>TRACE;__UNO__</DefineConstants>
+  </PropertyGroup>
   <ItemGroup Condition="exists('..\TemplatedContentDialogIssue.UWP')">
     <EmbeddedResource Include="..\TemplatedContentDialogIssue.UWP\Package.appxmanifest" LogicalName="Package.appxmanifest" />
     <Content Include="..\TemplatedContentDialogIssue.UWP\Assets\StoreLogo.png" Link="Assets\StoreLogo.png" />

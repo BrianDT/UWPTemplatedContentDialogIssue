@@ -9,6 +9,7 @@ namespace TemplatedContentDialogIssue
     using System.Runtime.InteropServices.WindowsRuntime;
     using System.Threading.Tasks;
     using System.Windows.Input;
+    using TemplatedContentDialogIssue.Controls;
     using TemplatedContentDialogIssue.Shared;
     using Vssl.Samples.Framework;
     using Windows.Foundation;
@@ -34,6 +35,13 @@ namespace TemplatedContentDialogIssue
         /// </summary>
         private double containerWidth;
 
+#if __UNO__
+        /// <summary>
+        /// The progress dialog control
+        /// </summary>
+        private AltProgressDialog altProgressDialog;
+#else
+
         /// <summary>
         /// The width if the dialog
         /// </summary>
@@ -43,6 +51,7 @@ namespace TemplatedContentDialogIssue
         /// If true do manual based on the control widths.
         /// </summary>
         private bool manualRepositioning;
+#endif
 
         /// <summary>
         /// Using a DependencyProperty as the backing store for  UndoCommand.  This enables animation, styling, binding, etc...
@@ -65,11 +74,17 @@ namespace TemplatedContentDialogIssue
                     DispatchHelper.Initialise();
                 }
 
+#if __UNO__
+                this.altProgressDialog = new AltProgressDialog();
+                this.altProgressDialog.UndoCommand = this.UndoCommand;
+                this.altProgressDialog.Message = "This is where messages and and UNDO button would normally be";
+#else
                 this.progressDialog.DialogSizeChanged += (d) =>
                 {
                     this.dialogWidth = d;
                     this.UpdateDialogOffset();
                 };
+#endif
             };
         }
 
@@ -86,8 +101,10 @@ namespace TemplatedContentDialogIssue
         /// <param name="e">The event args.</param>
         private void Enable_Adjustment(object sender, RoutedEventArgs e)
         {
+#if !__UNO__
             this.manualRepositioning = true;
             this.UpdateDialogOffset();
+#endif
         }
 
         /// <summary>
@@ -97,8 +114,12 @@ namespace TemplatedContentDialogIssue
         /// <param name="e">The event args.</param>
         private async void Show_Progress(object sender, RoutedEventArgs e)
         {
+#if __UNO__
+            await this.altProgressDialog.ShowAsync();
+#else
             this.dialogContainer.Visibility = Visibility.Visible;
             await this.progressDialog.ShowAsync(ContentDialogPlacement.InPlace);
+#endif
         }
 
         /// <summary>
@@ -112,8 +133,12 @@ namespace TemplatedContentDialogIssue
             {
                 DispatchHelper.InvokeOnUIThread(async () =>
                 {
+#if __UNO__
+                    await this.altProgressDialog.ShowAsync();
+#else
                     this.dialogContainer.Visibility = Visibility.Visible;
                     await this.progressDialog.ShowAsync(ContentDialogPlacement.InPlace);
+#endif
                 });
             });
 
@@ -122,8 +147,12 @@ namespace TemplatedContentDialogIssue
                 await Task.Delay(TimeSpan.FromSeconds(4));
                 DispatchHelper.InvokeOnUIThread(() =>
                 {
+#if __UNO__
+                    this.altProgressDialog.Hide();
+#else
                     this.progressDialog.Hide();
                     this.dialogContainer.Visibility = Visibility.Collapsed;
+#endif
                 });
             });
         }
@@ -134,8 +163,12 @@ namespace TemplatedContentDialogIssue
         /// <param name="parameters">Any optional parameters.</param>
         private async Task Undo(object parameters)
         {
+#if __UNO__
+            this.altProgressDialog.Hide();
+#else
             this.progressDialog.Hide();
             this.dialogContainer.Visibility = Visibility.Collapsed;
+#endif
             await Task.CompletedTask;
         }
 
@@ -155,11 +188,13 @@ namespace TemplatedContentDialogIssue
 
         private void UpdateDialogOffset()
         {
+#if !__UNO__
             if (this.manualRepositioning && this.dialogWidth > 0 && this.containerWidth > 0 && this.containerWidth > this.dialogWidth)
             {
                 var offset = -this.dialogWidth;
                 this.progressDialog.Margin = new Thickness(offset, progressDialog.Margin.Top, progressDialog.Margin.Right, progressDialog.Margin.Bottom);
             }
+#endif
         }
     }
 }

@@ -6,6 +6,12 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE;__UNO__</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants>TRACE;__UNO__</DefineConstants>
+  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Uno.UI.Skia.Wpf" Version="3.5.1" />
     <PackageReference Include="Uno.UI.RemoteControl" Version="3.5.1" Condition="'$(Configuration)'=='Debug'" />

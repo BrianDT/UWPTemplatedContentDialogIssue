@@ -4,7 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>tizen50</TargetFramework>
     <OutputType>Exe</OutputType>
-    <DefineConstants>$(DefineConstants);__TIZEN__;</DefineConstants>
+    <DefineConstants>TRACE;__TIZEN__;__UNO__</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="lib\" />
