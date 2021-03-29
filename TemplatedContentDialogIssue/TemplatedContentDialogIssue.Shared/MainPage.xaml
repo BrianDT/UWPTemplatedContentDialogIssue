@@ -26,17 +26,20 @@
 
             <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center" Margin="20,0,20,20">
                 <Grid>
-                    <Button x:Name="showProgress" Content="Custom Progress" Click="Show_Progress" Margin="0,12,0,0"
+                    <Button Content="Inplace Custom Progress" Click="Show_Inplace_Progress" Margin="0,12,0,0"
                             HorizontalAlignment="Left"/>
-                    <win:Button x:Name="manualAdjust" Content="Enable manual adjustment" Click="Enable_Adjustment" Margin="0,12,0,0"
+                    <Button Content="Enable manual adjustment" Click="Enable_Adjustment" Margin="0,12,0,0"
                             HorizontalAlignment="Right"/>
                 </Grid>
-                <Button Content="Progress with Timer" Click="Show_Progress_With_Time_Limit" Margin="0,12,0,0"/>
+                <Button Content="Inplace Progress with Timer" Click="Show_Inplace_Progress_With_Time_Limit" Margin="0,12,0,0"/>
+                <not_win:Button Content="Templated Custom Progress" Click="Show_Templated_Progress" Margin="0,12,0,0"
+                        HorizontalAlignment="Left"/>
+                <not_win:Button Content="Templated Progress with Timer" Click="Show_Templated_Progress_With_Time_Limit" Margin="0,12,0,0"/>
                 <TextBlock Text="Dialog should be horizontally centered in the red panel below." Margin="20" FontSize="24" />
             </StackPanel>
 
         </Grid>
-        <win:StackPanel x:Name="dialogContainer" MinHeight="72" Background="Red"
+        <StackPanel x:Name="dialogContainer" MinHeight="72" Background="Red"
                     SizeChanged="Container_SizeChanged"
                     Visibility="Collapsed"
                     RelativePanel.AlignLeftWithPanel="True"
@@ -44,9 +47,9 @@
                     RelativePanel.AlignBottomWithPanel="True">
             <controls:ProgressDialog x:Name="progressDialog"
                                      HorizontalAlignment="Center"
-                                     UndoCommand="{x:Bind UndoCommand, Mode=OneWay}"
+                                     UndoCommand="{x:Bind UndoInplaceCommand}"
                                      Margin="0,12,0,12"/>
-        </win:StackPanel>
+        </StackPanel>
 
     </RelativePanel>
 </Page>

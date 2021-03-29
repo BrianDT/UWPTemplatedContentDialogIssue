@@ -116,6 +116,10 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\TemplatedContentDialogIssue\TemplatedContentDialogIssue.Shared\Controls\AltProgressDialog.xaml.cs">
+      <Link>Controls\AltProgressDialog.xaml.cs</Link>
+      <DependentUpon>AltProgressDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -155,6 +159,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="..\TemplatedContentDialogIssue\TemplatedContentDialogIssue.Shared\Controls\AltProgressDialog.xaml">
+      <Link>Controls\AltProgressDialog.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="..\TemplatedContentDialogIssue\TemplatedContentDialogIssue.Shared\Controls\ProgressDialog.xaml">
       <Link>Controls\ProgressDialog.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
