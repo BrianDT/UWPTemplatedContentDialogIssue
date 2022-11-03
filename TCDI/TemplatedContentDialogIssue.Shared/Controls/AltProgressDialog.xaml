@@ -8,7 +8,7 @@
 
     <ContentDialog.Template>
         <ControlTemplate TargetType="ContentDialog">
-            <Grid>
+            <Grid VerticalAlignment="Stretch">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
@@ -22,7 +22,7 @@
     </ContentDialog.Template>
 
     <Border x:Name="BackgroundElement" BorderThickness="0" CornerRadius="8" Background="#AA000000" Padding="8,4,8,4"
-            Margin="24">
+            Margin="0,12,0,12">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>

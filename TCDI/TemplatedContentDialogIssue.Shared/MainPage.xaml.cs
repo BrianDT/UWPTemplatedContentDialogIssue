@@ -122,6 +122,7 @@ namespace TemplatedContentDialogIssue
         /// <param name="e">The event args.</param>
         private async void Show_Templated_Progress(object sender, RoutedEventArgs e)
         {
+            this.altDialogContainer.Visibility = Visibility.Visible;
             await this.altProgressDialog.ShowAsync();
         }
 
@@ -163,6 +164,7 @@ namespace TemplatedContentDialogIssue
             {
                 DispatchHelper.InvokeOnUIThread(async () =>
                 {
+                    this.altDialogContainer.Visibility = Visibility.Visible;
                     await this.altProgressDialog.ShowAsync();
                 });
             });
@@ -173,6 +175,7 @@ namespace TemplatedContentDialogIssue
                 DispatchHelper.InvokeOnUIThread(() =>
                 {
                     this.altProgressDialog.Hide();
+                    this.altDialogContainer.Visibility = Visibility.Collapsed;
                 });
             });
         }
@@ -195,6 +198,7 @@ namespace TemplatedContentDialogIssue
         private async Task Undo_Templated(object parameters)
         {
             this.altProgressDialog.Hide();
+            this.altDialogContainer.Visibility = Visibility.Collapsed;
             await Task.CompletedTask;
         }
 

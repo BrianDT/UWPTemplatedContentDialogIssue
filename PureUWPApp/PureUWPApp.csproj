@@ -116,26 +116,26 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\TemplatedContentDialogIssue\TemplatedContentDialogIssue.Shared\Controls\AltProgressDialog.xaml.cs">
+    <Compile Include="..\TCDI\TemplatedContentDialogIssue.Shared\Controls\AltProgressDialog.xaml.cs">
       <Link>Controls\AltProgressDialog.xaml.cs</Link>
       <DependentUpon>AltProgressDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="..\TemplatedContentDialogIssue\TemplatedContentDialogIssue.Shared\Controls\ProgressDialog.xaml.cs">
+    <Compile Include="..\TCDI\TemplatedContentDialogIssue.Shared\Controls\ProgressDialog.xaml.cs">
       <Link>Controls\ProgressDialog.xaml.cs</Link>
       <DependentUpon>ProgressDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="..\TemplatedContentDialogIssue\TemplatedContentDialogIssue.Shared\DelegateCommandAsync.cs">
+    <Compile Include="..\TCDI\TemplatedContentDialogIssue.Shared\DelegateCommandAsync.cs">
       <Link>DelegateCommandAsync.cs</Link>
     </Compile>
-    <Compile Include="..\TemplatedContentDialogIssue\TemplatedContentDialogIssue.Shared\DispatchHelper.cs">
+    <Compile Include="..\TCDI\TemplatedContentDialogIssue.Shared\DispatchHelper.cs">
       <Link>DispatchHelper.cs</Link>
     </Compile>
-    <Compile Include="..\TemplatedContentDialogIssue\TemplatedContentDialogIssue.Shared\MainPage.xaml.cs">
+    <Compile Include="..\TCDI\TemplatedContentDialogIssue.Shared\MainPage.xaml.cs">
       <Link>MainPage.xaml.cs</Link>
       <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -159,17 +159,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="..\TemplatedContentDialogIssue\TemplatedContentDialogIssue.Shared\Controls\AltProgressDialog.xaml">
+    <Page Include="..\TCDI\TemplatedContentDialogIssue.Shared\Controls\AltProgressDialog.xaml">
       <Link>Controls\AltProgressDialog.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="..\TemplatedContentDialogIssue\TemplatedContentDialogIssue.Shared\Controls\ProgressDialog.xaml">
+    <Page Include="..\TCDI\TemplatedContentDialogIssue.Shared\Controls\ProgressDialog.xaml">
       <Link>Controls\ProgressDialog.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="..\TemplatedContentDialogIssue\TemplatedContentDialogIssue.Shared\MainPage.xaml">
+    <Page Include="..\TCDI\TemplatedContentDialogIssue.Shared\MainPage.xaml">
       <Link>MainPage.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
