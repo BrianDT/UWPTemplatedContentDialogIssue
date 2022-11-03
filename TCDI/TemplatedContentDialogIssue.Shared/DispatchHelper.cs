@@ -8,8 +8,10 @@ namespace TemplatedContentDialogIssue.Shared
     using Windows.UI.Core;
 #if WINDOWS_UWP
     using Windows.UI.Xaml;
+    using WUI = Windows.UI.Xaml;
 #else
     using Microsoft.UI.Xaml;
+    using WUI = Microsoft.UI.Xaml;
 #endif
 
     public static class DispatchHelper
@@ -21,7 +23,7 @@ namespace TemplatedContentDialogIssue.Shared
 
         public static void Initialise()
         {
-            DispatchHelper.dispatcher = Window.Current.Dispatcher;
+            DispatchHelper.dispatcher = WUI.Window.Current.Dispatcher;
         }
 
         /// <summary>

@@ -5,12 +5,12 @@
 		<OutputType>Exe</OutputType>
 		<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net6.0-android'">21.0</SupportedOSPlatformVersion>
 		<IsUnoHead>true</IsUnoHead>
-    <RootNamespace>TemplatedContentDialogIssue.Droid</RootNamespace>
-    <AssemblyName>TemplatedContentDialogIssue.Droid</AssemblyName>
+        <RootNamespace>TemplatedContentDialogIssue.Droid</RootNamespace>
+        <AssemblyName>TemplatedContentDialogIssue.Droid</AssemblyName>
 		<AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
 	</PropertyGroup>
 	<ItemGroup>
-		<None Remove="Assets\Fonts\uno-fluentui-assets.ttf" />
+		<AndroidEnvironment Include="Properties/environment.conf" />
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Uno.WinUI" Version="4.6.19" />
@@ -19,9 +19,7 @@
 		<PackageReference Include="Uno.UniversalImageLoader" Version="1.9.36" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
-	</ItemGroup>
-	<ItemGroup>
-		<AndroidAsset Include="Assets\Fonts\uno-fluentui-assets.ttf" />
+		<PackageReference Include="Xamarin.Google.Android.Material" Version="1.4.0.4" />
 	</ItemGroup>
   <Import Project="..\TemplatedContentDialogIssue.Shared\TemplatedContentDialogIssue.Shared.projitems" Label="Shared" Condition="Exists('..\TemplatedContentDialogIssue.Shared\TemplatedContentDialogIssue.Shared.projitems')" />
 </Project>

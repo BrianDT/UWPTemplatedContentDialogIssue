@@ -17,9 +17,11 @@ namespace TemplatedContentDialogIssue
 #if WINDOWS_UWP
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
+    using WUI = Windows.UI.Xaml;
 #else
     using Microsoft.UI.Xaml;
     using Microsoft.UI.Xaml.Controls;
+    using WUI = Microsoft.UI.Xaml;
 #endif
 
     // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -66,7 +68,7 @@ namespace TemplatedContentDialogIssue
 
             this.Loaded += (s, e) =>
             {
-                if (Window.Current != null)
+                if (WUI.Window.Current != null)
                 {
                     DispatchHelper.Initialise();
                 }
