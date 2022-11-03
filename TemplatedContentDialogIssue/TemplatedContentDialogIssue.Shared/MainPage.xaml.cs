@@ -14,14 +14,13 @@ namespace TemplatedContentDialogIssue
     using Vssl.Samples.Framework;
     using Windows.Foundation;
     using Windows.Foundation.Collections;
-    using Windows.UI.Core;
+#if WINDOWS_UWP
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Controls;
-    using Windows.UI.Xaml.Controls.Primitives;
-    using Windows.UI.Xaml.Data;
-    using Windows.UI.Xaml.Input;
-    using Windows.UI.Xaml.Media;
-    using Windows.UI.Xaml.Navigation;
+#else
+    using Microsoft.UI.Xaml;
+    using Microsoft.UI.Xaml.Controls;
+#endif
 
     // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -67,7 +66,7 @@ namespace TemplatedContentDialogIssue
 
             this.Loaded += (s, e) =>
             {
-                if (Windows.UI.Xaml.Window.Current != null)
+                if (Window.Current != null)
                 {
                     DispatchHelper.Initialise();
                 }

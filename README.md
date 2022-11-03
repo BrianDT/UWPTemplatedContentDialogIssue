@@ -1,4 +1,4 @@
-# UnoGeometryIssues
+# Uno Templated Dialog Issues
 Replicates issues with templated content dialog controls
 
 Raised as issue #4639

@@ -1,5 +1,77 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFrameworks>net6.0-ios;</TargetFrameworks>
+		<OutputType>Exe</OutputType>
+		<RuntimeIdentifier Condition="'$(TargetFramework)' == 'net6.0-ios'">iossimulator-x64</RuntimeIdentifier>
+		<IsUnoHead>true</IsUnoHead>
+		<SupportedOSPlatformVersion Condition="'$(TargetFramework)' == 'net6.0-ios'">14.2</SupportedOSPlatformVersion>
+		<MtouchExtraArgs>$(MtouchExtraArgs) --setenv=MONO_GC_PARAMS=soft-heap-limit=512m,nursery-size=64m,evacuation-threshold=66,major=marksweep,concurrent-sweep</MtouchExtraArgs>
+		<!-- https://github.com/xamarin/xamarin-macios/issues/14812 -->
+		<MtouchExtraArgs>$(MtouchExtraArgs) --marshal-objectivec-exceptions:disable</MtouchExtraArgs>
+		<RootNamespace>TemplatedContentDialogIssue</RootNamespace>
+		<AssemblyName>TemplatedContentDialogIssue</AssemblyName>
+		<ProvisioningType>automatic</ProvisioningType>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(TargetFramework)'=='net6.0-ios'">
+		<CodesignKey>Apple Development: Brian Taylor (Q9B2YFXQXS)</CodesignKey>
+		<CodesignProvision>VS: WildCard Development</CodesignProvision>
+	</PropertyGroup>
+	<ItemGroup>
+		<None Include="Info.plist" />
+		<Content Include="Entitlements.plist" />
+		<BundleResource Include="Resources\SplashScreen%402x.png" />
+		<BundleResource Include="Resources\SplashScreen%403x.png" />
+		<BundleResource Include="Resources\Default-568h%402x.png" />
+	</ItemGroup>
+	<ItemGroup>
+		<BundleResource Include="Resources\Fonts\uno-fluentui-assets.ttf" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Uno.UI.Adapter.Microsoft.Extensions.Logging">
+			<Version>4.6.19</Version>
+		</PackageReference>
+		<PackageReference Include="Uno.WinUI" Version="4.6.19" />
+		<PackageReference Include="Uno.WinUI.RemoteControl" Version="4.6.19" Condition="'$(Configuration)'=='Debug'" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
+		<PackageReference Include="Uno.Extensions.Logging.OSLog " Version="1.4.0" />
+	</ItemGroup>
+	<ItemGroup>
+		<ImageAsset Include="Media.xcassets\AppIcons.appiconset\Contents.json">
+			<Visible>false</Visible>
+		</ImageAsset>
+		<ImageAsset Include="Media.xcassets\AppIcons.appiconset\ios-marketing-1024x1024%401x.png">
+			<Visible>false</Visible>
+		</ImageAsset>
+		<ImageAsset Include="Media.xcassets\AppIcons.appiconset\iPad-76x76%402x.png">
+			<Visible>false</Visible>
+		</ImageAsset>
+		<ImageAsset Include="Media.xcassets\AppIcons.appiconset\iPad-84x84%402x.png">
+			<Visible>false</Visible>
+		</ImageAsset>
+		<ImageAsset Include="Media.xcassets\AppIcons.appiconset\iPhone-20x20%402x.png">
+			<Visible>false</Visible>
+		</ImageAsset>
+		<ImageAsset Include="Media.xcassets\AppIcons.appiconset\iPhone-20x20%403x.png">
+			<Visible>false</Visible>
+		</ImageAsset>
+		<ImageAsset Include="Media.xcassets\AppIcons.appiconset\iPhone-40x40%403x.png">
+			<Visible>false</Visible>
+		</ImageAsset>
+		<ImageAsset Include="Media.xcassets\AppIcons.appiconset\iPhone-60x60%402x.png">
+			<Visible>false</Visible>
+		</ImageAsset>
+		<ImageAsset Include="Media.xcassets\LaunchImages.launchimage\Contents.json">
+			<Visible>false</Visible>
+		</ImageAsset>
+	</ItemGroup>
+	<ItemGroup>
+		<Folder Include="Properties\" />
+	</ItemGroup>
+	<Import Project="..\TemplatedContentDialogIssue.Shared\TemplatedContentDialogIssue.Shared.projitems" Label="Shared" Condition="Exists('..\TemplatedContentDialogIssue.Shared\TemplatedContentDialogIssue.Shared.projitems')" />
+</Project>
+
+<!--<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
@@ -26,7 +98,10 @@
     <MtouchArch>x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
-    <MtouchExtraArgs>--setenv=MONO_LOG_LEVEL=debug --setenv=MONO_LOG_MASK=gc --setenv=MONO_GC_PARAMS=soft-heap-limit=512m,nursery-size=64m,evacuation-threshold=66,major=marksweep,concurrent-sweep</MtouchExtraArgs>
+    <MtouchExtraArgs>-->
+	<!--setenv=MONO_LOG_LEVEL=debug -->
+	<!--setenv=MONO_LOG_MASK=gc -->
+	<!--setenv=MONO_GC_PARAMS=soft-heap-limit=512m,nursery-size=64m,evacuation-threshold=66,major=marksweep,concurrent-sweep</MtouchExtraArgs>
     <CodesignProvision>VS: WildCard Development</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
@@ -38,7 +113,8 @@
     <MtouchLink>None</MtouchLink>
     <MtouchArch>x86_64</MtouchArch>
     <ConsolePause>false</ConsolePause>
-    <MtouchExtraArgs>--setenv=MONO_GC_PARAMS=soft-heap-limit=512m,nursery-size=64m,evacuation-threshold=66,major=marksweep,concurrent-sweep</MtouchExtraArgs>
+    <MtouchExtraArgs>-->
+	<!--setenv=MONO_GC_PARAMS=soft-heap-limit=512m,nursery-size=64m,evacuation-threshold=66,major=marksweep,concurrent-sweep</MtouchExtraArgs>
     <DefineConstants>__IOS__;__MOBILE__;__UNIFIED__;__UNO__</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
@@ -54,7 +130,10 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <CodesignKey>Apple Development: Brian Taylor (Q9B2YFXQXS)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
-    <MtouchExtraArgs>--setenv=MONO_LOG_LEVEL=debug --setenv=MONO_LOG_MASK=gc --setenv=MONO_GC_PARAMS=soft-heap-limit=512m,nursery-size=64m,evacuation-threshold=66,major=marksweep,concurrent-sweep</MtouchExtraArgs>
+    <MtouchExtraArgs>-->
+	<!--setenv=MONO_LOG_LEVEL=debug -->
+	<!--setenv=MONO_LOG_MASK=gc -->
+	<!--setenv=MONO_GC_PARAMS=soft-heap-limit=512m,nursery-size=64m,evacuation-threshold=66,major=marksweep,concurrent-sweep</MtouchExtraArgs>
     <CodesignProvision>VS: WildCard Development</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
@@ -70,7 +149,8 @@
     <MtouchUseLlvm>true</MtouchUseLlvm>
     <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
     <BuildIpa>true</BuildIpa>
-    <MtouchExtraArgs>--setenv=MONO_GC_PARAMS=soft-heap-limit=512m,nursery-size=64m,evacuation-threshold=66,major=marksweep,concurrent-sweep</MtouchExtraArgs>
+    <MtouchExtraArgs>-->
+	<!--setenv=MONO_GC_PARAMS=soft-heap-limit=512m,nursery-size=64m,evacuation-threshold=66,major=marksweep,concurrent-sweep</MtouchExtraArgs>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
     <DebugType>none</DebugType>
@@ -156,4 +236,4 @@
   <ItemGroup />
   <Import Project="..\TemplatedContentDialogIssue.Shared\TemplatedContentDialogIssue.Shared.projitems" Label="Shared" Condition="Exists('..\TemplatedContentDialogIssue.Shared\TemplatedContentDialogIssue.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
-</Project>
+</Project>-->

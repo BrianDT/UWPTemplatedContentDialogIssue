@@ -1,10 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Windows.UI.Core;
+﻿// <copyright file="DispatchHelper.cs" company="Visual Software Systems Ltd.">Copyright (c) 2019 All rights reserved</copyright>
 
 namespace TemplatedContentDialogIssue.Shared
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+    using Windows.UI.Core;
+#if WINDOWS_UWP
+    using Windows.UI.Xaml;
+#else
+    using Microsoft.UI.Xaml;
+#endif
+
     public static class DispatchHelper
     {
         /// <summary>
@@ -14,7 +21,7 @@ namespace TemplatedContentDialogIssue.Shared
 
         public static void Initialise()
         {
-            DispatchHelper.dispatcher = Windows.UI.Xaml.Window.Current.Dispatcher;
+            DispatchHelper.dispatcher = Window.Current.Dispatcher;
         }
 
         /// <summary>
