@@ -6,15 +6,12 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using TemplatedContentDialogIssue.Controls;
-using TemplatedContentDialogIssue.Shared;
 using Vssl.Samples.Framework;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using WUI = Microsoft.UI.Xaml;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -43,6 +40,8 @@ public sealed partial class MainPage : Page
     /// </summary>
     private bool manualRepositioning;
 
+    private IDispatchOnUIThread uiDispatcher;
+
     /// <summary>
     /// Using a DependencyProperty as the backing store for  UndoCommand.  This enables animation, styling, binding, etc...
     /// </summary>
@@ -55,17 +54,17 @@ public sealed partial class MainPage : Page
     public MainPage()
     {
         this.InitializeComponent();
-        this.UndoCommand = new DelegateCommandAsync(this.Undo_Templated, (o) => true);
-        this.UndoInplaceCommand = new DelegateCommandAsync(this.Undo_Inplace, (o) => true);
+        this.uiDispatcher = new UIDispatcher();
+
+        this.UndoCommand = new DelegateCommandAsync(this.uiDispatcher, this.Undo_Templated, (o) => true);
+        this.UndoInplaceCommand = new DelegateCommandAsync(this.uiDispatcher, this.Undo_Inplace, (o) => true);
 
         this.Loaded += (s, e) =>
         {
-            if (WUI.Window.Current != null)
-            {
-                DispatchHelper.Initialise();
-            }
+            this.uiDispatcher.Initialise();
 
             this.altProgressDialog = new AltProgressDialog();
+            this.altProgressDialog.XamlRoot = AppStateHelper.GetMainWindow().Content.XamlRoot;
             this.altProgressDialog.UndoCommand = this.UndoCommand;
             this.altProgressDialog.Message = "This is where messages and and UNDO button would normally be";
 
@@ -127,7 +126,7 @@ public sealed partial class MainPage : Page
     {
         Task.Run(() =>
         {
-            DispatchHelper.InvokeOnUIThread(async () =>
+            this.uiDispatcher.Invoke(async () =>
             {
                 this.dialogContainer.Visibility = Visibility.Visible;
                 await this.progressDialog.ShowAsync(ContentDialogPlacement.InPlace);
@@ -137,7 +136,7 @@ public sealed partial class MainPage : Page
         Task.Run(async () =>
         {
             await Task.Delay(TimeSpan.FromSeconds(4));
-            DispatchHelper.InvokeOnUIThread(() =>
+            this.uiDispatcher.Invoke(() =>
             {
                 this.progressDialog.Hide();
                 this.dialogContainer.Visibility = Visibility.Collapsed;
@@ -154,7 +153,7 @@ public sealed partial class MainPage : Page
     {
         Task.Run(() =>
         {
-            DispatchHelper.InvokeOnUIThread(async () =>
+            this.uiDispatcher.Invoke(async () =>
             {
                 this.altDialogContainer.Visibility = Visibility.Visible;
                 await this.altProgressDialog.ShowAsync();
@@ -164,7 +163,7 @@ public sealed partial class MainPage : Page
         Task.Run(async () =>
         {
             await Task.Delay(TimeSpan.FromSeconds(4));
-            DispatchHelper.InvokeOnUIThread(() =>
+            this.uiDispatcher.Invoke(() =>
             {
                 this.altProgressDialog.Hide();
                 this.altDialogContainer.Visibility = Visibility.Collapsed;

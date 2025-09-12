@@ -29,3 +29,5 @@ The display issue has been raised separately as #10333
 https://github.com/unoplatform/uno/issues/10333
 
 A manual adjustment of positions added showing a workaround for the positioning issue
+
+2025-09-12 UWP Project removed

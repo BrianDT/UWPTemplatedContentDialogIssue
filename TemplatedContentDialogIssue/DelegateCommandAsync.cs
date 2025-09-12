@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using TemplatedContentDialogIssue.Shared;
+using TemplatedContentDialogIssue;
 
 /// <summary>
 /// A helper class the assembles the methods for command execution
@@ -36,6 +36,8 @@ public class DelegateCommandAsync : ICommand
     /// </summary>
     private bool isExecuting;
 
+    private IDispatchOnUIThread uiDispatcher;
+
     #endregion
 
     #region [ Constructors ]
@@ -44,8 +46,9 @@ public class DelegateCommandAsync : ICommand
     /// Initializes a new instance of the <see cref="DelegateCommandAsync"/> class
     /// </summary>
     /// <param name="executeAction">The execute method</param>
-    public DelegateCommandAsync(Func<object, Task> executeAction)
+    public DelegateCommandAsync(IDispatchOnUIThread uiDispatcher, Func<object, Task> executeAction)
     {
+        this.uiDispatcher = uiDispatcher;
         this.executeAction = executeAction;
     }
 
@@ -54,8 +57,8 @@ public class DelegateCommandAsync : ICommand
     /// </summary>
     /// <param name="executeAction">The execute method</param>
     /// <param name="canExecute">The can execute function</param>
-    public DelegateCommandAsync(Func<object, Task> executeAction, Func<object, bool> canExecute)
-        : this(executeAction)
+    public DelegateCommandAsync(IDispatchOnUIThread uiDispatcher, Func<object, Task> executeAction, Func<object, bool> canExecute)
+        : this(uiDispatcher, executeAction)
     {
         this.canExecute = canExecute;
     }
@@ -140,11 +143,7 @@ public class DelegateCommandAsync : ICommand
     /// </summary>
     public void RaiseCanExecuteChanged()
     {
-        var threadSafeCopy = this.CanExecuteChanged;
-        if (threadSafeCopy != null)
-        {
-            DispatchHelper.InvokeOnUIThread(() => threadSafeCopy.Invoke(this, EventArgs.Empty));
-        }
+        this.uiDispatcher.Invoke(() => this.CanExecuteChanged?.Invoke(this, EventArgs.Empty));
     }
 
     #endregion
