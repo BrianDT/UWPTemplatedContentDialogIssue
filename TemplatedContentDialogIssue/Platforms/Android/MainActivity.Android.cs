@@ -1,10 +1,15 @@
+// <copyright file=MainActivity.Android.cs" company="Visual Software Systems Ltd.">Copyright (c) 2020 - 2025 All rights reserved</copyright>
+namespace TemplatedContentDialogIssue.Droid;
+
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
 
-namespace TemplatedContentDialogIssue.Droid;
+/// <summary>
+/// The main Android activity.
+/// </summary>
 [Activity(
     MainLauncher = true,
     ConfigurationChanges = global::Uno.UI.ActivityHelper.AllConfigChanges,
@@ -18,5 +23,4 @@ public class MainActivity : Microsoft.UI.Xaml.ApplicationActivity
 
         base.OnCreate(savedInstanceState);
     }
-
 }

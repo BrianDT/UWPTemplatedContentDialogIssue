@@ -1,3 +1,6 @@
+// <copyright file=Main.Android.cs" company="Visual Software Systems Ltd.">Copyright (c) 2020 - 2025 All rights reserved</copyright>
+namespace TemplatedContentDialogIssue.Droid;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +13,6 @@ using Android.Views;
 using Android.Widget;
 using Microsoft.UI.Xaml.Media;
 
-namespace TemplatedContentDialogIssue.Droid;
 [global::Android.App.ApplicationAttribute(
     Label = "@string/ApplicationName",
     Icon = "@mipmap/icon",

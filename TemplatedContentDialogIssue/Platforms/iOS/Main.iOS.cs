@@ -1,10 +1,18 @@
+// <copyright file=Main.iOS.cs" company="Visual Software Systems Ltd.">Copyright (c) 2020 - 2025 All rights reserved</copyright>
+namespace TemplatedContentDialogIssue.iOS;
+
 using UIKit;
 using Uno.UI.Hosting;
 
-namespace TemplatedContentDialogIssue.iOS;
+/// <summary>
+/// The main program
+/// </summary>
 public class EntryPoint
 {
-    // This is the main entry point of the application.
+    /// <summary>
+    /// This is the main entry point of the application.
+    /// </summary>
+    /// <param name="args">Any optional arguments</param>
     public static void Main(string[] args)
     {
         App.InitializeLogging();

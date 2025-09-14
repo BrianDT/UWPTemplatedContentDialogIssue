@@ -2,22 +2,29 @@
     x:Class="TemplatedContentDialogIssue.Controls.ProgressDialog"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
->
+    xmlns:local="using:TemplatedContentDialogIssue.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
+    <ContentDialog.Resources>
+        <SolidColorBrush x:Key="ContentDialogBackground" Color="#AA000000" />
+        <!--<SolidColorBrush x:Key="ContentDialogBorderBrush" Color="CadetBlue" />-->
+        <SolidColorBrush x:Key="ContentDialogTopOverlay" Color="#AA000000" />
+        <x:Double x:Key="ContentDialogBorderWidth">0</x:Double>
+        <x:Double x:Key="ContentDialogMinHeight">32</x:Double>
+        <CornerRadius x:Key="OverlayCornerRadius">8,8,8,8</CornerRadius>
+        <Thickness x:Key="ContentDialogPadding">8,4,8,4</Thickness>
+    </ContentDialog.Resources>
 
-    <ContentDialog.Template>
+    <!--<ContentDialog.Template>
         <ControlTemplate TargetType="ContentDialog">
-            <Border x:Name="Container"> <!--SHOULD NOT BE NECESSARY-->
-                <Grid x:Name="LayoutRoot">  <!--SHOULD NOT BE NECESSARY-->
+            <Border x:Name="Container"> --><!--SHOULD NOT BE NECESSARY--><!--
+                <Grid x:Name="LayoutRoot">  --><!--SHOULD NOT BE NECESSARY--><!--
                     <Border x:Name="BackgroundElement" BorderThickness="0" CornerRadius="8" Background="#AA000000" Padding="8,4,8,4">
                         <ContentPresenter/>
                     </Border>
                 </Grid>
             </Border>
         </ControlTemplate>
-    </ContentDialog.Template>
+    </ContentDialog.Template>-->
     <Grid x:Name="DialogSpace" SizeChanged="Dialog_SizeChanged">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>

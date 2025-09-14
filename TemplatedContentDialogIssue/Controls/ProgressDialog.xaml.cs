@@ -1,30 +1,29 @@
 // <copyright file="ProgressDialog.xaml.cs" company="Visual Software Systems Ltd.">Copyright (c) 2020, 2021, 2025 All rights reserved</copyright>
-
 namespace TemplatedContentDialogIssue.Controls;
 
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Windows.Input;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 
+/// <summary>
+/// The code behind the progress dialog box.
+/// </summary>
 public sealed partial class ProgressDialog : ContentDialog
 {
-    /// <summary>
-    /// The width if the dialog
-    /// </summary>
-    private double dialogWidth;
-
     /// <summary>
     /// Using a DependencyProperty as the backing store for  UndoCommand.  This enables animation, styling, binding, etc...
     /// </summary>
     public static readonly DependencyProperty UndoCommandProperty =
         DependencyProperty.Register("UndoCommand", typeof(ICommand), typeof(ProgressDialog), new PropertyMetadata(0));
+
+    /// <summary>
+    /// The width if the dialog
+    /// </summary>
+    private double dialogWidth;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ProgressDialog"/> class
@@ -42,15 +41,15 @@ public sealed partial class ProgressDialog : ContentDialog
     /// <summary>
     /// An event that notifies that the dialog size has changed
     /// </summary>
-    public event Action<double> DialogSizeChanged;
+    public event Action<double>? DialogSizeChanged;
 
     /// <summary>
     /// Gets or sets the command executed when the undo button is pressed
     /// </summary>
     public ICommand UndoCommand
     {
-        get { return (ICommand)GetValue(UndoCommandProperty); }
-        set { SetValue(UndoCommandProperty, value); }
+        get { return (ICommand)this.GetValue(UndoCommandProperty); }
+        set { this.SetValue(UndoCommandProperty, value); }
     }
 
     /// <summary>

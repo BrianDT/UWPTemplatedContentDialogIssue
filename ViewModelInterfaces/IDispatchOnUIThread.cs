@@ -1,5 +1,5 @@
 // <copyright file="IDispatchOnUIThread.cs" company="Visual Software Systems Ltd.">Copyright (c) 2013, 2024, 2025 All rights reserved</copyright>
-namespace TemplatedContentDialogIssue;
+namespace Vssl.Samples.ViewModelInterfaces;
 
 using System;
 using System.Collections.Generic;
@@ -21,5 +21,12 @@ public interface IDispatchOnUIThread
     /// Execute an action via the dispatcher
     /// </summary>
     /// <param name="action">The action</param>
-    public void Invoke(Action action);
+    void Invoke(Action action);
+
+    /// <summary>
+    /// Execute a function via the dispatcher
+    /// </summary>
+    /// <param name="action">The action</param>
+    /// <returns>An awaitable task</returns>
+    Task InvokeTask(Func<Task> action);
 }

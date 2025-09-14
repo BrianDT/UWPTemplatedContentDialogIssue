@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using TemplatedContentDialogIssue;
+using Vssl.Samples.ViewModelInterfaces;
 
 /// <summary>
 /// A helper class the assembles the methods for command execution
@@ -19,12 +19,12 @@ public class DelegateCommandAsync : ICommand
     /// <summary>
     /// The can execute function
     /// </summary>
-    private Func<object, bool> canExecute;
+    private Func<object?, bool>? canExecute;
 
     /// <summary>
     /// The execute method
     /// </summary>
-    private Func<object, Task> executeAction;
+    private Func<object?, Task> executeAction;
 
     /// <summary>
     /// The cached value of CanExecute
@@ -45,8 +45,9 @@ public class DelegateCommandAsync : ICommand
     /// <summary>
     /// Initializes a new instance of the <see cref="DelegateCommandAsync"/> class
     /// </summary>
+    /// <param name="uiDispatcher">The dispatcher used to marshal onto the UI thread</param>
     /// <param name="executeAction">The execute method</param>
-    public DelegateCommandAsync(IDispatchOnUIThread uiDispatcher, Func<object, Task> executeAction)
+    public DelegateCommandAsync(IDispatchOnUIThread uiDispatcher, Func<object?, Task> executeAction)
     {
         this.uiDispatcher = uiDispatcher;
         this.executeAction = executeAction;
@@ -55,9 +56,10 @@ public class DelegateCommandAsync : ICommand
     /// <summary>
     /// Initializes a new instance of the <see cref="DelegateCommandAsync"/> class
     /// </summary>
+    /// <param name="uiDispatcher">The dispatcher used to marshal onto the UI thread</param>
     /// <param name="executeAction">The execute method</param>
     /// <param name="canExecute">The can execute function</param>
-    public DelegateCommandAsync(IDispatchOnUIThread uiDispatcher, Func<object, Task> executeAction, Func<object, bool> canExecute)
+    public DelegateCommandAsync(IDispatchOnUIThread uiDispatcher, Func<object?, Task> executeAction, Func<object?, bool> canExecute)
         : this(uiDispatcher, executeAction)
     {
         this.canExecute = canExecute;
@@ -70,14 +72,14 @@ public class DelegateCommandAsync : ICommand
     /// <summary>
     /// The CanExecuteChanged event
     /// </summary>
-    public event EventHandler CanExecuteChanged;
+    public event EventHandler? CanExecuteChanged;
 
     /// <summary>
     /// Checks to see if the command can be executed
     /// </summary>
     /// <param name="parameter">The optional command parameter</param>
     /// <returns>True if the command can be executed</returns>
-    public bool CanExecute(object parameter)
+    public bool CanExecute(object? parameter)
     {
         bool temp = (this.canExecute == null || this.canExecute(parameter)) && !this.isExecuting;
 
@@ -97,7 +99,7 @@ public class DelegateCommandAsync : ICommand
     /// Executes the command action
     /// </summary>
     /// <param name="parameter">The optional command parameter</param>
-    public async void Execute(object parameter)
+    public async void Execute(object? parameter)
     {
         this.SetIsExecuting(true);
         try

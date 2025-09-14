@@ -27,7 +27,15 @@ Still present in Uno 4.6.19
 
 The display issue has been raised separately as #10333
 https://github.com/unoplatform/uno/issues/10333
+closed as covered by
+https://github.com/unoplatform/uno/issues/3333
 
 A manual adjustment of positions added showing a workaround for the positioning issue
 
+Windows specific issue raised as
+Cannot horizontally centre a custom content dialog defined with ContentDialogPlacement.InPlace in its owning panel.
+https://github.com/unoplatform/uno/issues/4662
+
 2025-09-12 UWP Project removed
+2025-09-14 manual adjustment removed - no longer required.
+#4662 confirmed resolved

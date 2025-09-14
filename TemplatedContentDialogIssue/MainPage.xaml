@@ -10,15 +10,13 @@
     mc:Ignorable="d not_win"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <RelativePanel Background="Gray">
-        <Grid Background="AliceBlue" HorizontalAlignment="Center"
-              RelativePanel.AlignTopWithPanel="True"
-              RelativePanel.AlignHorizontalCenterWithPanel="True"
-              RelativePanel.AlignBottomWithPanel="True">
-          <Grid.RowDefinitions>
+    <Grid HorizontalAlignment="Center">
+        <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-          </Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
             <TextBlock Text="Heh press the button to display a custom dialog" Margin="20" FontSize="30" TextWrapping="WrapWholeWords"/>
 
@@ -28,46 +26,60 @@
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" Click="Show_Inplace_Progress" Margin="0,12,12,0"
-                            HorizontalAlignment="Left">
+                <StackPanel Grid.Column="0">
+                    <Button 
+                            Command="{x:Bind VM.ShowInplaceProgressCommand}"
+                            Margin="0,12,12,0"
+                            HorizontalAlignment="Left"
+                            IsEnabled="{x:Bind VM.CanShowDiaglogButtons, Mode=OneWay}">
                         <Button.Content>
                             <TextBlock Text="Inplace Custom Progress"
                            TextWrapping="WrapWholeWords"/>
                         </Button.Content>
                     </Button>
-                    <Button Grid.Column="1" Click="Enable_Adjustment" Margin="12,12,0,0"
+                    <Button Content="Inplace Progress with Timer"
+                        Command="{x:Bind VM.ShowInplaceProgressWithTimeLimitCommand}"
+                        Margin="0,12,0,0"
+                        IsEnabled="{x:Bind VM.CanShowDiaglogButtons, Mode=OneWay}"/>
+
+                    <!--<Button Click="Enable_Adjustment" Margin="12,12,0,0"
                             HorizontalAlignment="Right">
                         <Button.Content>
                             <TextBlock Text="Enable manual adjustment"
                            TextWrapping="WrapWholeWords"/>
                         </Button.Content>
-                    </Button>
-                </Grid>
-                <Button Content="Inplace Progress with Timer" Click="Show_Inplace_Progress_With_Time_Limit" Margin="0,12,0,0"/>
-                <not_win:Button Content="Templated Custom Progress" Click="Show_Templated_Progress" Margin="0,12,0,0"
-                        HorizontalAlignment="Left"/>
-                <not_win:Button Content="Templated Progress with Timer" Click="Show_Templated_Progress_With_Time_Limit" Margin="0,12,0,0"/>
-                <TextBlock Text="Dialog should be horizontally centered in the red panel below." Margin="20" FontSize="24"
+                    </Button>-->
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <Button Content="In Code Custom Progress"
+                                Command="{x:Bind VM.ShowTemplatedProgressCommand}"
+                                Margin="0,12,0,0"
+                                HorizontalAlignment="Left"
+                                IsEnabled="{x:Bind VM.CanShowDiaglogButtons, Mode=OneWay}"/>
+                    <Button Content="In Code Progress with Timer"
+                                Command="{x:Bind VM.ShowTemplatedProgressWithTimeLimitCommand}"
+                                Margin="0,12,0,0"
+                                IsEnabled="{x:Bind VM.CanShowDiaglogButtons, Mode=OneWay}"/>
+                </StackPanel>
+            </Grid>
+                <TextBlock Text="Dialog should be horizontally centered in the red or orange panel below." Margin="20" FontSize="24"
                            TextWrapping="WrapWholeWords"/>
             </StackPanel>
 
-        </Grid>
-        <StackPanel x:Name="dialogContainer" MinHeight="72" Background="Red"
+            <StackPanel Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Stretch">
+                <TextBlock Text="{x:Bind VM.LastMessage, Mode=OneWay}"/>
+            </StackPanel>
+
+        <StackPanel Grid.Row="3" x:Name="dialogContainer" MinHeight="72" Background="Red"
                     SizeChanged="Container_SizeChanged"
-                    Visibility="Collapsed"
-                    RelativePanel.AlignLeftWithPanel="True"
-                    RelativePanel.AlignRightWithPanel="True"
-                    RelativePanel.AlignBottomWithPanel="True">
+                    Visibility="{x:Bind VM.ShowInPlaceDialogContainer, Mode=OneWay}">
             <controls:ProgressDialog x:Name="progressDialog"
-                                     HorizontalAlignment="Center"
-                                     UndoCommand="{x:Bind UndoInplaceCommand}"
-                                     Margin="0,12,0,12"/>
+                                        HorizontalAlignment="Center"
+                                        UndoCommand="{x:Bind VM.UndoInplaceCommand}"
+                                        Margin="0,12,0,12"/>
         </StackPanel>
-        <StackPanel x:Name="altDialogContainer" MinHeight="72" Background="Red"
-                    Visibility="Collapsed"
-                    RelativePanel.AlignLeftWithPanel="True"
-                    RelativePanel.AlignRightWithPanel="True"
-                    RelativePanel.AlignBottomWithPanel="True">
+        <StackPanel Grid.Row="3" x:Name="altDialogContainer" MinHeight="72" Background="Orange"
+                    Visibility="{x:Bind VM.ShowTemplatedDialogContainer, Mode=OneWay}">
         </StackPanel>
-    </RelativePanel>
+    </Grid>
 </Page>

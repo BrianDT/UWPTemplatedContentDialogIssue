@@ -15,14 +15,22 @@ using WUI = Microsoft.UI.Xaml;
 /// </summary>
 public static class AppStateHelper
 {
-    private static WUI.Window window;
+    private static WUI.Window? window;
 
+    /// <summary>
+    /// Set the main window from the App.xaml.cs.
+    /// </summary>
+    /// <param name="window">The main window</param>
     public static void SetMainWindow(WUI.Window window)
     {
         AppStateHelper.window = window;
     }
 
-    public static WUI.Window GetMainWindow()
+    /// <summary>
+    /// Gets the main window.
+    /// </summary>
+    /// <returns>The main window</returns>
+    public static WUI.Window? GetMainWindow()
     {
         return AppStateHelper.window;
     }
