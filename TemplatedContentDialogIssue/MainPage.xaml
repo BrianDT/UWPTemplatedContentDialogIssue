@@ -60,7 +60,7 @@
                             HorizontalAlignment="Left"
                             IsEnabled="{x:Bind VM.CanShowDiaglogButtons, Mode=OneWay}">
                         <Button.Content>
-                            <TextBlock Text="Inplace Progress with Timer"
+                            <TextBlock Text="In Code Custom Progress"
                            TextWrapping="WrapWholeWords"/>
                         </Button.Content>
                     </Button>
@@ -68,7 +68,7 @@
                             Margin="0,12,0,0"
                             IsEnabled="{x:Bind VM.CanShowDiaglogButtons, Mode=OneWay}">
                         <Button.Content>
-                            <TextBlock Text="In Code Custom Progress"
+                            <TextBlock Text="In Code Progress with Timer"
                            TextWrapping="WrapWholeWords"/>
                         </Button.Content>
                     </Button>
